@@ -1,6 +1,10 @@
 file = File.open('info.txt', 'r').read
+sk=0
 hsh=Hash.new(0)
-  file.split("").each do |char|
+  file.gsub(" ","").split("").each do |char|
      hsh[char] +=1
+     sk+=1
+
   end
-  print hsh.sort
+  puts hsh.sort
+  puts sk
