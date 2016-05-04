@@ -1,21 +1,20 @@
-#class Statistic
- #attr_accessor :file, :hsh
+class Statistic
 
-def readFile
+def initialize
 @file = File.open('text.txt', 'r').read
 end
 
 def calculate
-sk=0
-  @hsh=Hash.new(0)
+  puts @file.length
+    @hsh=Hash.new(0)
    @file.gsub!(/[^a-zA-Z]/, '').split("").each do |char|
-      @hsh[char] +=1
-        sk+=1
-    end
-puts sk
+        @hsh[char] +=1
+      end
+      puts @file.length
    end
 
-readFile
-calculate
-puts @hsh.sort
-puts @file
+
+ end
+
+
+Statistic.new.calculate
