@@ -1,20 +1,28 @@
+require 'json'
 class Statistic
+attr_accessor :text, :hsh
 
 def initialize
-@file = File.open('text.txt', 'r').read
+@text = File.open('text.txt', 'r').read
 end
 
 def calculate
-  puts @file.length
-    @hsh=Hash.new(0)
-   @file.gsub!(/[^a-zA-Z]/, '').split("").each do |char|
-        @hsh[char] +=1
-      end
-      puts @file.length
-   end
+  @hsh=Hash.new(0)
+    text.gsub!(/[^a-zA-Z]/, '').split("").each do |char|
+      @hsh[char] +=1
+    end
+    return @hsh
+end
 
+def printing
+  c=calculate
+    fileLength= 1 / text.length.to_f
+      c.each { |k, v| hsh[k] *= fileLength }
+  return hsh
+end
 
- end
+end
 
-
-Statistic.new.calculate
+result = File.open('json.txt', 'w')
+result.puts Statistic.new().printing.to_json
+result.close
